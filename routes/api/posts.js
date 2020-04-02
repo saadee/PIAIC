@@ -12,15 +12,16 @@ const Post = require("../../models/Post");
 router.post(
   "/",
   [
-    auth,
-    [
-      check("title", "title is required")
-        .not()
-        .isEmpty(),
-      check("content", "content is required")
-        .not()
-        .isEmpty()
-    ]
+    auth
+    // ,
+    // [
+    //   check("title", "title is required")
+    //     .not()
+    //     .isEmpty(),
+    //   check("content", "content is required")
+    //     .not()
+    //     .isEmpty()
+    // ]
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -32,6 +33,7 @@ router.post(
       const newPost = new Post({
         content: req.body.content,
         title: req.body.title,
+        category: req.body.ctg,
         name: user.profile.userName,
         image: req.body.image,
         user: req.user.id

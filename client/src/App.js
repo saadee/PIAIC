@@ -20,11 +20,13 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import CreateProfile from "./StudentPortal/DashBoard/userProfile/CreateProfle";
 import UserProfile from "./StudentPortal/DashBoard/userProfile/userProfile";
-import Publications from "./StudentPortal/Posts/Posts";
+import ArticleHome from "./StudentPortal/Posts/ArticleHome";
 import AddPost from "./StudentPortal/Posts/addPost";
 import TextEditor from "./component/TextEditor";
 import "./App.css";
 import ArticleDisplay from "./StudentPortal/Posts/ArticleDisplay";
+
+import Article from './StudentPortal/Posts/ArticleCard'
 // import Dashboard from './views/Routing Components/BlockChain-component/Dashboard';
 
 if (localStorage.token) {
@@ -44,7 +46,8 @@ const App = () => {
             <PrivateRoute path="/media/compose" component={TextEditor} />
             <PrivateRoute exact path="/dashboard" component={UserProfile} />
             <Route exact path="/payment" component={Payment} />
-            <Route exact path="/articles" component={Publications} />
+            <Route exact path="/articles" component={ArticleHome} />
+            <Route exact path="/a" component={Article} />
             <Route exact path="/write-an-article" component={AddPost} />
             <Route exact path="/aritcle/:id" component={ArticleDisplay} />
             <Route exact path="/paymenthistory" component={PaymentHistory} />

@@ -4,7 +4,7 @@ const initialState = {
   loading: true,
   error: {}
 };
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case "GET_POSTS":
@@ -32,10 +32,12 @@ export default function (state = initialState, action) {
         loading: false
       };
     case "ADD_ARTICLE":
-      console.log(payload)
+      console.log(payload);
       return {
-        ...state
-      }
+        ...state,
+        posts: payload,
+        loading: false
+      };
     default:
       return state;
   }

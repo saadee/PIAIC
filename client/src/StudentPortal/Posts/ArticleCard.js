@@ -21,20 +21,24 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPosts } from "../../actions/post";
 import img from "./dummy.png";
+import { Editor } from "react-draft-wysiwyg";
 import { getCurrentProfile } from "../../actions/profile";
+import { stateToHTML } from "draft-js-export-html";
+import { convertFromRaw } from "draft-js";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 700,
-    margin: "auto"
+    maxWidth: 750,
+    maxHeight: 300
+    // margin: "auto"
   },
   title: {
     fontFamily: "courier",
     // marginTop: "10px",
-    padding: "2px",
-    background:
-      "linear-gradient(0deg, rgba(214,231,219,0.46262254901960786) 0%, rgba(156,193,156,0.927608543417367) 100%)"
-    // border: "1px solid red"
+    // padding: "2px"
+    fontSize: "10px",
+    marginTop: "0px",
+    border: "1px solid red"
   },
   ArticleCardMain: {
     // display: "flex",
@@ -50,7 +54,9 @@ const useStyles = makeStyles(theme => ({
     // marginLeft: "20px"
   },
   imageDiv: {
-    width: "fit-content"
+    width: "fit-content",
+
+    display: "flex"
     // border: "1px solid green"
   },
   content: {
@@ -101,77 +107,35 @@ const ArticleCard = ({
   const handleExpandClick = e => {
     setExpanded(!expanded);
   };
+  // let a= posts.content
+  // const convertCommentFromJSONToHTML = a => {
+  //   return stateToHTML(convertFromRaw(JSON.parse(a)));
+  // // };
+  // var d = document.getElementById("hu");
+  // console.log(d.outerHTML);
 
   return (
     <div className={classes.ArticleCardMain}>
       {posts.map(post => (
         <div className={classes.ArticleCardChild} key={post._id}>
           <Card className={classes.root}>
-            <Typography
-              variant="h4"
-              color="grey"
-              component="h4"
-              className={classes.title}
-            >
-              {post.title}
-            </Typography>
-            <Typography>{post._id}</Typography>
-            <CardHeader
-              className={classes.card}
-              // avatar={
-              //   <Avatar
-              //     aria-label="recipe"
-              //     src={user.profile.image}
-              //     className={classes.avatar}
-              //   ></Avatar>
-              // }
-              subheader={new Date(post.date).toDateString()}
-            />
-
             <div className={classes.contentDiv}>
               <div className={classes.imageDiv}>
                 <CardMedia
                   className={classes.media}
                   image={!post.image ? img : post.image}
                 />
+                <Typography
+                  id="hu"
+                  variant="h5"
+                  color="grey"
+                  component="p"
+                  className={classes.title}
+                >
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </Typography>
               </div>
-              <CardContent className={classes.content}>
-                {!isAuthenticated ? (
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Login To See the user
-                  </Typography>
-                ) : (
-                  <Typography
-                    className={classes.dec}
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Auhtor : {user.email}
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                    quod eligendi vero in molestias cum, aliquam culpa sed odio
-                    hic. Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Voluptates ut quibusdam cupiditate esse a. Tempora
-                    distinctio quis maiores vitae, quas quidem ea aliquam velit
-                    unde explicabo aut tempore accusantium. Amet, atque veniam
-                    quasi totam nulla molestias doloremque nostrum explicabo
-                    similique. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Sunt, odit. Incidunt numquam laudantium
-                    ipsa, molestiae molestias consequuntur provident explicabo
-                    officiis dolore, maiores accusamus doloremque tempore
-                    pariatur nisi dicta doloribus soluta obcaecati facilis
-                    veritatis odio voluptates. Obcaecati velit harum dolorem
-                    doloremque. Quia labore aperiam iste aliquam molestias
-                    voluptatibus debitis sunt nihil dolore culpa! Eos explicabo
-                    saepe commodi magnam quam ipsam, minus cumque sint, omnis
-                    sed dolorum et eveniet alias ex harum?
-                  </Typography>
-                )}
-              </CardContent>
+              <CardContent className={classes.content}></CardContent>
             </div>
             <CardActions disableSpacing>
               <Typography
@@ -196,7 +160,6 @@ const ArticleCard = ({
               <CardContent>
                 <Typography paragraph>Author:{post.name}</Typography>
                 <Typography paragraph>{post.content}</Typography>
-
               </CardContent>
             </Collapse>
           </Card>

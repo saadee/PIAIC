@@ -20,65 +20,23 @@ import { getCurrentProfile } from "../../actions/profile";
 import Nav from "./appbar";
 import Spinner from "../DashBoard/userProfile/spinner";
 import { getPost } from "../../actions/post";
+import Container from "@material-ui/core/Container";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import TelegramIcon from "@material-ui/icons/Telegram";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 1000,
-    margin: "auto"
-  },
-  title: {
-    fontFamily: "Times New Roman",
-    color: "black",
-    fontWeight: "bold",
-    letterSpacing: "5px",
-    // fontSize: "1.2rem",
-    padding: "10px",
+    maxWidth: 900,
     margin: "auto",
-    background:
-      "linear-gradient(0deg, rgba(214,231,219,0.46262254901960786) 0%, rgba(156,193,156,0.927608543417367) 100%)"
-
-    // border: "1px solid red"
-  },
-  ArticleDisplayMain: {
-    // display: "flex",
-    margin: "auto"
-  },
-  author: {
-    fontSize: "20px",
-    color: "black",
-    fontWeight: "bold"
-  },
-  ArticleDisplayChild: {
-    marginTop: "20px"
+    marginTop: "3%"
   },
   media: {
-    height: "0px",
-    width: "800px",
-    paddingTop: "30% ",
-    // marginLeft: "20px"
-    margin: "auto"
+    height: 0,
+    paddingTop: "40%" // 16:9
   },
-  imageDiv: {
-    // width: "fit-content"
-    // border: "5px solid green",
-    margin: "auto"
-  },
-  content: {
-    // border: "3px solid grey",
-    width: "900px",
-    height: "500px",
-    // overflow: "Hidden",
-    marginTop: "20px",
-    margin: "auto",
-    fontFamily: "georgia",
-    textAlign: "justify"
-  },
-  contentDiv: {
-    // display: "flex",
-    flexWrap: "wrap"
-    // margin: "20px"
-  },
-  authorDiv: {},
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -91,63 +49,106 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  mainCardContainer: {
+    // border: "1px solid green",
+    margin: "auto",
+    width: "80%",
+    marginTop: "3%"
+  },
+  heading: {
+    fontFamily: " ",
+    textAlign: "left",
+    fontWeight: "bold",
+    height: "10%",
+    width: "80%",
+    margin: "auto"
+  },
+  name: {
+    textAlign: "left",
+    // margin:'auto',
+    // border: "1px solid blue",
+    width: "fit-content"
   }
 }));
-
 const ArticleDisplay = ({ getPost, post: { post, loading }, match }) => {
+  const classes = useStyles();
   useEffect(() => {
     getPost(match.params.id);
 
     console.log("Post Title", post.title);
   }, [getPost]);
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
-  return (
-    <div className={classes.ArticleDisplayMain}>
-      <Nav />
-      <div className={classes.ArticleDisplayChild}>
-        <Card className={classes.root}>
-          <Typography variant="h3" component="h4" className={classes.title}>
-            {/* This is Title */}
-            {post.title}
-          </Typography>
-          <CardHeader
-            className={classes.card}
-            // avatar={
-            //   <Avatar
-            //     aria-label="recipe"
-            //     src={user.profile.image}
-            //     className={classes.avatar}
-            //   ></Avatar>
-            // }
-            // subheader={new Date(post.date).toDateString()}
+  return loading == null ? (
+    <Spinner />
+  ) : (
+    <Container maxWidth="xl">
+      <div style={{ marginLeft: "-20px" }}>
+        <Nav />
+      </div>
+      <Container maxWidth="lg" className={classes.mainCardContainer}>
+        <Typography variant="h5" component="h6" className={classes.heading}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: post.title
+            }}
           />
-
-          <div className={classes.contentDiv}>
-            <div className={classes.imageDiv}>
-              <CardMedia
-                className={classes.media}
-                image={!post.image ? img : post.image}
-              />
-            </div>
-            <CardContent className={classes.content}>
-              <Typography variant="body1" color="textPrimary" component="p">
-                <center>
-                  <div className={classes.authorDiv}>
-                    <span className={classes.author}>
-                      {/* Author : {user.email} */}
-                    </span>
-                  </div>
-                </center>
-                <hr />
-                {post.content}
+        </Typography>
+        <Container>
+          <Card className={classes.root}>
+            <CardHeader
+              avatar={
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                  R
+                </Avatar>
+              }
+              title={
+                <Typography variant="h5" className={classes.name}>
+                  {post.name}
+                </Typography>
+              }
+              subheader={
+                <Typography variant="p" className={classes.date}>
+                  {new Date(post.date).toDateString()}
+                </Typography>
+              }
+              action={
+                <IconButton aria-label="share">
+                  <ShareIcon />
+                </IconButton>
+              }
+            />
+            <CardMedia
+              className={classes.media}
+              image={post.image}
+              title="Paella dish"
+            />
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: post.content
+                  }}
+                />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                aperiam repudiandae sapiente voluptas quidem id quas eum nemo
+                aliquam doloribus sint eveniet iusto voluptate suscipit,
+                veritatis voluptatem sunt dolorum, pariatur sed optio aliquid,
+                fugit tenetur earum accusantium? Iste ea ipsam aliquam, fugit
+                ratione harum deleniti cupiditate pariatur! Totam aliquam ex
+                explicabo deserunt quidem inventore dolor ea ipsum, hic sed
+                expedita quisquam nostrum libero quasi nobis minus fuga
+                voluptatem iure dignissimos, fugiat blanditiis eveniet. Enim,
+                neque consequatur cupiditate quibusdam ea tempora voluptates
+                officia nesciunt sequi aut magni totam vero quam dolor.
               </Typography>
             </CardContent>
-          </div>
-        </Card>
-      </div>
-    </div>
+          </Card>
+        </Container>
+      </Container>
+    </Container>
   );
 };
 

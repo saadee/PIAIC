@@ -137,7 +137,7 @@ const UserProfile = ({
         {profile.userName ? (
           <Fragment>
             <div>You Have Created Your Profile !</div>
-            <Link to="/media/compose" className="link">
+            <Link to="/write-an-article" className="link">
               <Button
                 variant="contained"
                 size="large"

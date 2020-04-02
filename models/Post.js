@@ -8,45 +8,51 @@ const PostSchema = new mongoose.Schema({
   title: {
     type: String
   },
+
   content: {
     type: String
   },
   image: {
     type: String
   },
+
+  category: {
+    type: String
+  },
+
   name: {
     type: String
   },
-  likes: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
-      }
-    }
-  ],
-  comments: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
-      },
+  // likes: [
+  //   {
+  //     user: {
+  //       type: mongoose.Schema.Types.ObjectId,
+  //       ref: "user"
+  //     }
+  //   }
+  // ],
+  // comments: [
+  //   {
+  //     user: {
+  //       type: mongoose.Schema.Types.ObjectId,
+  //       ref: "user"
+  //     },
 
-      text: {
-        type: String
-      },
-      name: {
-        type: String
-      },
-      avatar: {
-        type: String
-      },
-      date: {
-        type: Date,
-        default: Date.now
-      }
-    }
-  ],
+  //     text: {
+  //       type: String
+  //     },
+  //     name: {
+  //       type: String
+  //     },
+  //     avatar: {
+  //       type: String
+  //     },
+  //     date: {
+  //       type: Date,
+  //       default: Date.now
+  //     }
+  //   }
+  // ],
   date: {
     type: Date,
     default: Date.now

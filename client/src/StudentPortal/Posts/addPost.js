@@ -9,6 +9,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import TextEditor from "../../component/TextEditor";
 import { Link, Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -98,7 +99,8 @@ const AddPost = ({ addPost, isAuthenticated }) => {
           marginTop: "20px"
         }}
       >
-        <form onSubmit={e => onSubmit(e)}>
+        <TextEditor />
+        {/* <form onSubmit={e => onSubmit(e)}>
           <TextField
             style={{
               width: "500px",
@@ -150,7 +152,7 @@ const AddPost = ({ addPost, isAuthenticated }) => {
           >
             Post Article
           </Button>
-        </form>
+        </form> */}
       </div>
     </div>
   );

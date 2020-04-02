@@ -35,8 +35,6 @@ export const getPost = id => async dispatch => {
 
 // Create posts
 export const addPost = ({ title, content, image }) => async dispatch => {
-
-
   let fData = new FormData();
   fData.append("name", title);
   fData.append("content", content);
@@ -56,19 +54,14 @@ export const addPost = ({ title, content, image }) => async dispatch => {
   }
 };
 
-export const addArticle = (data) =>async dispatch => {
-try {
-  // const res = post
-  dispatch({
-    type:"ADD_ARTICLE",
-    payload:data
-    // payload:res.data
-  })
-
-  
-} catch(err) {
-  console.log(err.message)
-}
-  
-
-}
+export const addArticle = data => async dispatch => {
+  try {
+    const res = await axios.post("/api/posts", data);
+    dispatch({
+      type: "ADD_ARTICLE",
+      payload: res.data
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
