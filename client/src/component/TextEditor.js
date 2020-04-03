@@ -33,7 +33,7 @@ class TextEditor extends Component {
   state = { editorState: EditorState.createEmpty(), image: "", category: "" };
   changeFileHandle = e => {
     const objectURL = e.target.files[0];
-    if (objectURL.size > 30000) {
+    if (objectURL.size > 52000) {
       alert("File size is too big!");
     }
     toDataURL(URL.createObjectURL(e.target.files[0]), dataUrl => {
@@ -51,19 +51,27 @@ class TextEditor extends Component {
     });
   };
   onPublish = () => {
-    console.log("editor statee", this.state.category);
-
     let image = this.state.image;
     let content = this.state.editorContentHtml;
     let id = this.props.loggedInUserId;
     let ctg = this.state.category;
     console.log("checking");
     console.log($(this.state.editorContentHtml).find("h1").prevObject);
+
+    let title =
+      $(this.state.editorContentHtml).find("h1").prevObject[0].innerText ||
+      "Untitled Article";
+
+    let newContent = $(this.state.editorContentHtml);
+  
+     newContent .find("h1")
+      .eq(0)
+      .remove();
+
     let data = {
-      title:
-        $(this.state.editorContentHtml).find("h1").prevObject[0].innerText ||
-        "Untitled Article",
-      content,
+      title: title,
+      content: newContent.html() || "N222",
+
       image,
       ctg,
       id

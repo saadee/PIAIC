@@ -283,7 +283,9 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h5" component="h2" 
+                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
+                    >
                     <div
                       dangerouslySetInnerHTML={{
                         __html: Medical.length ? Medical[0].title : ""
@@ -294,6 +296,8 @@ const ArticleHome = ({
                     variant="body2"
                     color="textSecondary"
                     component="p"
+                    style={{width:'250px',height:'130px',overflow:'hidden'}}
+
                   >
                     <div
                       dangerouslySetInnerHTML={{
@@ -332,7 +336,9 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h5" component="h2"
+                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
+                    >
                     <div
                       dangerouslySetInnerHTML={{
                         __html: Social.length ? Social[0].title : ""
@@ -343,6 +349,8 @@ const ArticleHome = ({
                     variant="body2"
                     color="textSecondary"
                     component="p"
+                    style={{width:'250px',height:'100px',overflow:'hidden'}}
+
                   >
                     <div
                       dangerouslySetInnerHTML={{
@@ -381,7 +389,9 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h5" component="h2" 
+                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
+                    >
                     <div
                       dangerouslySetInnerHTML={{
                         __html: Crisis.length ? Crisis[0].title : ""
@@ -392,6 +402,8 @@ const ArticleHome = ({
                     variant="body2"
                     color="textSecondary"
                     component="p"
+                    style={{width:'250px',height:'130px',overflow:'hidden'}}
+
                   >
                     <div
                       dangerouslySetInnerHTML={{
@@ -430,7 +442,13 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
+
+                  >
                     <div
                       dangerouslySetInnerHTML={{
                         __html: Humor.length ? Humor[0].title : ""
@@ -441,6 +459,8 @@ const ArticleHome = ({
                     variant="body2"
                     color="textSecondary"
                     component="p"
+                    style={{width:'250px',height:'130px',overflow:'hidden'}}
+
                   >
                     <div
                       dangerouslySetInnerHTML={{
