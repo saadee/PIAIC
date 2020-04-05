@@ -230,7 +230,7 @@ const ArticleHome = ({
                     <Grid item container direction="column" spacing={2}>
                       <Grid item xs>
                         <Typography
-                          variant="body2"
+                          variant="h5"
                           gutterBottom
                           style={{
                             // border: "1px solid red",
@@ -241,7 +241,7 @@ const ArticleHome = ({
                         >
                           <div
                             dangerouslySetInnerHTML={{
-                              __html: post.content,
+                              __html: post.title,
                             }}
                           />
                         </Typography>{" "}
