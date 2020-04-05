@@ -22,91 +22,91 @@ import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import lizard from "./i.jpg";
 import { fadeIn } from "react-animations";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    margin: "auto"
+    margin: "auto",
   },
   root1: {
-    maxWidth: 290
+    maxWidth: 290,
     // width:'fit-content'
   },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
     margin: "0.5rem",
-    maxWidth: 500
+    maxWidth: 500,
   },
   image: {
-    width: 128,
-    height: 128
+    width: 130,
+    height: 130,
   },
   img: {
     margin: "auto",
     display: "block",
     maxWidth: "100%",
-    maxHeight: "100%"
+    maxHeight: "100%",
   },
   img1: {
     display: "inline",
     width: "fit-content",
     maxWidth: "100%",
-    maxHeight: "100%"
+    maxHeight: "100%",
   },
   paper1: {
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     textAlign: "center",
-    margin: "0.5rem"
+    margin: "0.5rem",
   },
   gridParent: {
-    margin: "auto"
+    margin: "auto",
     // margin:'1rem'
     // padding: "1rem"
   },
   gridFlex: {
     display: "flex",
-    marginLeft: "50px"
+    marginLeft: "50px",
     // border: "1px solid red"
   },
   gridFlexs: {
     margin: "auto",
-    display: "flex"
+    display: "flex",
   },
   ReadingB: {
-    textAlign: "left"
+    textAlign: "left",
   },
   card: {
     display: "flex",
     maxWidth: 750,
     maxHeight: 300,
-    margin: "auto"
+    margin: "auto",
   },
   title: {
     fontWeight: "bold",
-    fontSize: "25px"
+    fontSize: "25px",
 
     // textAlign: "left"
   },
   description: {
     textAlign: "justfy",
     margin: "1rem",
-    padding: "1rem"
+    padding: "1rem",
   },
   author: {
     margin: "10px",
-    textAlign: "left"
+    textAlign: "left",
   },
   mediaDiv: {
-    margin: "10px"
+    margin: "10px",
   },
   media: {
     height: "90px",
     width: "150px",
     paddingTop: "30.25%", // 16:9,
     // marginLeft: "20px",
-    border: "1px solid red"
-  }
+    border: "1px solid red",
+  },
 }));
 
 const ArticleHome = ({
@@ -114,7 +114,7 @@ const ArticleHome = ({
   post: { posts, loading, _id },
   user,
   getCurrentProfile,
-  isAuthenticated
+  isAuthenticated,
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -128,27 +128,27 @@ const ArticleHome = ({
   const Crisis = [];
   const Humor = [];
 
-  posts.map(post => {
+  posts.map((post) => {
     if (post.category == "Medical") {
       Medical.push(post);
     }
   });
-  posts.map(post => {
+  posts.map((post) => {
     if (post.category == "Social") {
       Social.push(post);
     }
   });
-  posts.map(post => {
+  posts.map((post) => {
     if (post.category == "General") {
       General.push(post);
     }
   });
-  posts.map(post => {
+  posts.map((post) => {
     if (post.category == "Crisis") {
       Crisis.push(post);
     }
   });
-  posts.map(post => {
+  posts.map((post) => {
     if (post.category == "Humor") {
       Humor.push(post);
     }
@@ -159,9 +159,7 @@ const ArticleHome = ({
       <Appbar />
 
       <Grid container spacing={3} className={classes.gridParent}>
-        <Grid item xs={12}>
-          {/* <Paper className={classes.paper}>xs=12{}</Paper> */}
-        </Grid>
+        <Grid item xs={12}></Grid>
         <Grid item xs={6} style={{ marginLeft: "0.5rem" }}>
           <Card className="animated zoomIn">
             <CardActionArea>
@@ -172,36 +170,35 @@ const ArticleHome = ({
                 image={General.length ? General[0].image : img}
               />
               <CardContent>
-                <Typography component="h1">
-                  <div
-                    style={{ fontSize: "20px", fontWeight: "bold" }}
-                    dangerouslySetInnerHTML={{
-                      __html: General.length ? General[0].title : ""
-                    }}
-                  />
-                </Typography>
-
-                <Typography>
+                <Typography
+                  style={{
+                    maxHeight: "120px",
+                    overflow: "hidden",
+                  }}
+                >
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: General.length ? General[0].content : ""
+                      __html: General.length ? General[0].content : "",
                     }}
                   />
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              {/* <Link to={`/aritcle/${post._id}`} className="link"> */}
-              <IconButton>
-                {" "}
-                <span style={{ fontSize: "15px" }}>See More</span>
-                <OpenInNewIcon
-                  style={{
-                    float: "right"
-                  }}
-                />
-              </IconButton>
-              {/* </Link> */}
+              <Link
+                to={`/aritcle/${General.length ? General[0]._id : General._id}`}
+                className="link"
+              >
+                <IconButton>
+                  {" "}
+                  <span style={{ fontSize: "15px" }}>See More</span>
+                  <OpenInNewIcon
+                    style={{
+                      float: "right",
+                    }}
+                  />
+                </IconButton>
+              </Link>
             </CardActions>
           </Card>
         </Grid>
@@ -213,10 +210,10 @@ const ArticleHome = ({
             width: "200px",
             marginLeft: "0rem",
             overflow: "scroll",
-            overflowX: "hidden" /* Hide horizontal scrollbar */
+            overflowX: "hidden" /* Hide horizontal scrollbar */,
           }}
         >
-          {General.slice(1).map(post => (
+          {General.slice(1).map((post) => (
             <div className={classes.root} className="animated fadeIn delay-1s">
               <Paper className={classes.paper} style={{ marginLeft: "0.5rem" }}>
                 <Grid container spacing={2}>
@@ -232,13 +229,19 @@ const ArticleHome = ({
                   <Grid item xs={12} sm container>
                     <Grid item container direction="column" spacing={2}>
                       <Grid item xs>
-                        <Typography gutterBottom variant="h6">
-                          {post.title}
-                        </Typography>
-                        <Typography variant="body2" gutterBottom>
+                        <Typography
+                          variant="body2"
+                          gutterBottom
+                          style={{
+                            // border: "1px solid red",
+                            maxHeight: "200px",
+                            maxWidth: "340px",
+                            overflow: "hidden",
+                          }}
+                        >
                           <div
                             dangerouslySetInnerHTML={{
-                              __html: post.content
+                              __html: post.content,
                             }}
                           />
                         </Typography>{" "}
@@ -255,7 +258,7 @@ const ArticleHome = ({
                             <span style={{ fontSize: "15px" }}>See More</span>
                             <OpenInNewIcon
                               style={{
-                                float: "right"
+                                float: "right",
                               }}
                             />
                           </IconButton>
@@ -283,42 +286,41 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2" 
-                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
-                    >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: Medical.length ? Medical[0].title : ""
-                      }}
-                    />
-                  </Typography>
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
-                    style={{width:'250px',height:'130px',overflow:'hidden'}}
-
+                    style={{
+                      width: "250px",
+                      maxHeight: "130px",
+                      overflow: "hidden",
+                    }}
                   >
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: Medical.length ? Medical[0].content : ""
+                        __html: Medical.length ? Medical[0].content : "",
                       }}
                     />
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                {/* <Link to={`/aritcle/${post._id}`} className="link"> */}
-                <IconButton>
-                  {" "}
-                  <span style={{ fontSize: "15px" }}>See More</span>
-                  <OpenInNewIcon
-                    style={{
-                      float: "right"
-                    }}
-                  />
-                </IconButton>
-                {/* </Link> */}
+                <Link
+                  to={`/aritcle/${
+                    Medical.length ? Medical[0]._id : Medical._id
+                  }`}
+                  className="link"
+                >
+                  <IconButton>
+                    {" "}
+                    <span style={{ fontSize: "15px" }}>See More</span>
+                    <OpenInNewIcon
+                      style={{
+                        float: "right",
+                      }}
+                    />
+                  </IconButton>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
@@ -336,42 +338,39 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2"
-                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
-                    >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: Social.length ? Social[0].title : ""
-                      }}
-                    />
-                  </Typography>
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
-                    style={{width:'250px',height:'100px',overflow:'hidden'}}
-
+                    style={{
+                      width: "250px",
+                      maxHeight: "130px",
+                      overflow: "hidden",
+                    }}
                   >
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: Social.length ? Social[0].content : ""
+                        __html: Social.length ? Social[0].content : "",
                       }}
                     />
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                {/* <Link to={`/aritcle/${post._id}`} className="link"> */}
-                <IconButton>
-                  {" "}
-                  <span style={{ fontSize: "15px" }}>See More</span>
-                  <OpenInNewIcon
-                    style={{
-                      float: "right"
-                    }}
-                  />
-                </IconButton>
-                {/* </Link> */}
+                <Link
+                  to={`/aritcle/${Social.length ? Social[0]._id : Social._id}`}
+                  className="link"
+                >
+                  <IconButton>
+                    {" "}
+                    <span style={{ fontSize: "15px" }}>See More</span>
+                    <OpenInNewIcon
+                      style={{
+                        float: "right",
+                      }}
+                    />
+                  </IconButton>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
@@ -389,42 +388,39 @@ const ArticleHome = ({
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2" 
-                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
-                    >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: Crisis.length ? Crisis[0].title : ""
-                      }}
-                    />
-                  </Typography>
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
-                    style={{width:'250px',height:'130px',overflow:'hidden'}}
-
+                    style={{
+                      width: "250px",
+                      maxHeight: "130px",
+                      overflow: "hidden",
+                    }}
                   >
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: Crisis.length ? Crisis[0].content : ""
+                        __html: Crisis.length ? Crisis[0].content : "",
                       }}
                     />
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                {/* <Link to={`/aritcle/${post._id}`} className="link"> */}
-                <IconButton>
-                  {" "}
-                  <span style={{ fontSize: "15px" }}>See More</span>
-                  <OpenInNewIcon
-                    style={{
-                      float: "right"
-                    }}
-                  />
-                </IconButton>
-                {/* </Link> */}
+                <Link
+                  to={`/aritcle/${Crisis.length ? Crisis[0]._id : Crisis._id}`}
+                  className="link"
+                >
+                  <IconButton>
+                    {" "}
+                    <span style={{ fontSize: "15px" }}>See More</span>
+                    <OpenInNewIcon
+                      style={{
+                        float: "right",
+                      }}
+                    />
+                  </IconButton>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
@@ -443,45 +439,38 @@ const ArticleHome = ({
                 />
                 <CardContent>
                   <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    style={{width:'250px',maxHeight:'100px',overflow:'hidden'}}
-
-                  >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: Humor.length ? Humor[0].title : ""
-                      }}
-                    />
-                  </Typography>
-                  <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
-                    style={{width:'250px',height:'130px',overflow:'hidden'}}
-
+                    style={{
+                      width: "250px",
+                      maxHeight: "130px",
+                      overflow: "hidden",
+                    }}
                   >
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: Humor.length ? Humor[0].content : ""
+                        __html: Humor.length ? Humor[0].content : "",
                       }}
                     />
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                {/* <Link to={`/aritcle/${post._id}`} className="link"> */}
-                <IconButton>
-                  {" "}
-                  <span style={{ fontSize: "15px" }}>See More</span>
-                  <OpenInNewIcon
-                    style={{
-                      float: "right"
-                    }}
-                  />
-                </IconButton>
-                {/* </Link> */}
+                <Link
+                  to={`/aritcle/${Humor.length ? Humor[0]._id : Humor._id}`}
+                  className="link"
+                >
+                  <IconButton>
+                    {" "}
+                    <span style={{ fontSize: "15px" }}>See More</span>
+                    <OpenInNewIcon
+                      style={{
+                        float: "right",
+                      }}
+                    />
+                  </IconButton>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
@@ -494,13 +483,13 @@ const ArticleHome = ({
 ArticleHome.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   post: state.post,
   user: state.auth.user,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 });
 export default connect(mapStateToProps, { getPosts, getCurrentProfile })(
   ArticleHome

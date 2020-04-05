@@ -27,34 +27,34 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TelegramIcon from "@material-ui/icons/Telegram";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 900,
     margin: "auto",
-    marginTop: "3%"
+    marginTop: "3%",
   },
   media: {
     height: 0,
-    paddingTop: "40%" // 16:9
+    paddingTop: "40%", // 16:9
   },
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
     transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: "rotate(180deg)",
   },
   avatar: {
-    backgroundColor: red[500]
+    backgroundColor: red[500],
   },
   mainCardContainer: {
     // border: "1px solid green",
     margin: "auto",
     width: "80%",
-    marginTop: "3%"
+    marginTop: "3%",
   },
   heading: {
     fontFamily: " ",
@@ -62,14 +62,14 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     height: "10%",
     width: "80%",
-    margin: "auto"
+    margin: "auto",
   },
   name: {
     textAlign: "left",
     // margin:'auto',
     // border: "1px solid blue",
-    width: "fit-content"
-  }
+    width: "fit-content",
+  },
 }));
 const ArticleDisplay = ({ getPost, post: { post, loading }, match }) => {
   const classes = useStyles();
@@ -89,13 +89,6 @@ const ArticleDisplay = ({ getPost, post: { post, loading }, match }) => {
         <Nav />
       </div>
       <Container maxWidth="lg" className={classes.mainCardContainer}>
-        <Typography variant="h5" component="h6" className={classes.heading}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: post.title
-            }}
-          />
-        </Typography>
         <Container>
           <Card className={classes.root}>
             <CardHeader
@@ -129,20 +122,9 @@ const ArticleDisplay = ({ getPost, post: { post, loading }, match }) => {
               <Typography variant="body2" color="textSecondary" component="p">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: post.content
+                    __html: post.content,
                   }}
                 />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                aperiam repudiandae sapiente voluptas quidem id quas eum nemo
-                aliquam doloribus sint eveniet iusto voluptate suscipit,
-                veritatis voluptatem sunt dolorum, pariatur sed optio aliquid,
-                fugit tenetur earum accusantium? Iste ea ipsam aliquam, fugit
-                ratione harum deleniti cupiditate pariatur! Totam aliquam ex
-                explicabo deserunt quidem inventore dolor ea ipsum, hic sed
-                expedita quisquam nostrum libero quasi nobis minus fuga
-                voluptatem iure dignissimos, fugiat blanditiis eveniet. Enim,
-                neque consequatur cupiditate quibusdam ea tempora voluptates
-                officia nesciunt sequi aut magni totam vero quam dolor.
               </Typography>
             </CardContent>
           </Card>
@@ -154,9 +136,9 @@ const ArticleDisplay = ({ getPost, post: { post, loading }, match }) => {
 
 ArticleDisplay.propTypes = {
   getPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  post: state.post
+const mapStateToProps = (state) => ({
+  post: state.post,
 });
 export default connect(mapStateToProps, { getPost })(ArticleDisplay);

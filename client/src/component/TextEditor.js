@@ -17,9 +17,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 function toDataURL(url, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.onload = function() {
+  xhr.onload = function () {
     var reader = new FileReader();
-    reader.onloadend = function() {
+    reader.onloadend = function () {
       callback(reader.result);
     };
     reader.readAsDataURL(xhr.response);
@@ -31,23 +31,23 @@ function toDataURL(url, callback) {
 let category = ["General", "Social", "Medical", "Crisis", "Humor"];
 class TextEditor extends Component {
   state = { editorState: EditorState.createEmpty(), image: "", category: "" };
-  changeFileHandle = e => {
+  changeFileHandle = (e) => {
     const objectURL = e.target.files[0];
     if (objectURL.size > 52000) {
       alert("File size is too big!");
     }
-    toDataURL(URL.createObjectURL(e.target.files[0]), dataUrl => {
+    toDataURL(URL.createObjectURL(e.target.files[0]), (dataUrl) => {
       console.log("RESULT:", dataUrl);
       this.setState({ image: dataUrl });
     });
   };
-  onCategory = e => {
+  onCategory = (e) => {
     this.setState({ ...this.state, [e.target.name]: e.target.value });
   };
-  onChange = editorState => {
+  onChange = (editorState) => {
     this.setState({
       editorState,
-      editorContentHtml: stateToHTML(editorState.getCurrentContent())
+      editorContentHtml: stateToHTML(editorState.getCurrentContent()),
     });
   };
   onPublish = () => {
@@ -62,19 +62,15 @@ class TextEditor extends Component {
       $(this.state.editorContentHtml).find("h1").prevObject[0].innerText ||
       "Untitled Article";
 
-    let newContent = $(this.state.editorContentHtml);
-  
-     newContent .find("h1")
-      .eq(0)
-      .remove();
-
     let data = {
       title: title,
-      content: newContent.html() || "N222",
+      content: draftToHtml(
+        convertToRaw(this.state.editorState.getCurrentContent())
+      ),
 
       image,
       ctg,
-      id
+      id,
     };
     this.props.addArticle(data);
   };
@@ -89,7 +85,7 @@ class TextEditor extends Component {
             height: "600px",
             overflow: "scroll",
             backgroundColor: "#C0C0C0",
-            margin: "auto"
+            margin: "auto",
           }}
         >
           <Editor
@@ -106,7 +102,7 @@ class TextEditor extends Component {
           <FormControl
             variant="filled"
             style={{
-              width: "200px"
+              width: "200px",
             }}
           >
             <InputLabel id="demo-simple-select-filled-label">City</InputLabel>
@@ -115,12 +111,12 @@ class TextEditor extends Component {
               id="demo-simple-select-filled"
               name="category"
               value={this.state.category}
-              onChange={e => this.onCategory(e)}
+              onChange={(e) => this.onCategory(e)}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {category.map(cty => (
+              {category.map((cty) => (
                 <MenuItem value={cty}>{cty}</MenuItem>
               ))}
             </Select>
@@ -130,7 +126,7 @@ class TextEditor extends Component {
           className="editorUploadButton"
           style={{
             width: "fit-content",
-            margin: "auto"
+            margin: "auto",
             // position: "absolute",
             // right: "10%",
             // top: "20%"
@@ -144,7 +140,7 @@ class TextEditor extends Component {
             multiple
             type="file"
             name="User-Image"
-            onChange={e => this.changeFileHandle(e)}
+            onChange={(e) => this.changeFileHandle(e)}
           />
           <label htmlFor="contained-button-file">
             <Button variant="contained" color="primary" component="span">
@@ -157,7 +153,7 @@ class TextEditor extends Component {
           style={{
             width: "fit-content",
             margin: "auto",
-            marginTop: "1rem"
+            marginTop: "1rem",
             // position: "absolute",
             // right: "10%",
             // top: "30%"
@@ -175,8 +171,8 @@ class TextEditor extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  loggedInUserId: state.auth.user._id
+const mapStateToProps = (state) => ({
+  loggedInUserId: state.auth.user._id,
 });
 
 export default connect(mapStateToProps, { addArticle })(TextEditor);
